@@ -1,12 +1,12 @@
 
-function print_Even(num) {
+function print_even(num) {
     for(let i = 0; i <= num; i+= 2){
         console.log(i + " ")
     }
 }
 
-// print_Even(20)
-// print_Even(5)
+// print_even(20)
+// print_even(5)
 
 // console.log("\n")
 
@@ -143,11 +143,18 @@ function return_occurences(str, ch) {
 //     });
 // }
 
+//  filter both a word and num from respective arrays
+function filter_word(array, target) {
+    let filtered = array.filter(x => x !== target)
+    return filtered
+}
+
 // function filter_num_arr(array, num) {
 //     array = array.filter((x) => {
 //         return x !== num;
 //     });
 // }
+
 
 // function filter_obj_arr(array, obj_id){
 //     array = array.filter((obj) => {
@@ -155,25 +162,41 @@ function return_occurences(str, ch) {
 //     });
 // }
 
+function filter_obj_by_id(array, id_value) {
+    let filtered = arr.filter(x => x.id !== id_value)
+}
+
+function find_obj_by_id(array, id_value) {
+    let obj = arr.find(x => x.id === id_value)
+    return obj
+}
+
 function print_date() {
     let date = new Date()
     console.log(`${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`)
 }
 
-print_date()
+// print_date()
 
-function pass_test(obj) {
-    keys = obj.keys()
-    for(let i = 0; i < keys.length; i++){
-        if(obj.keys[i] > 10) return true;
-    }
-    return false;
-}
 
-function return_higher_than_ten(array) {
-    for(let i = 0; i < array.length; i++) {
-        if(pass_test(array[i])){
+//  return_heigher_than_10 helper
+// function pass_test(obj) {
+//     keys = obj.keys()
+//     for(let i = 0; i < keys.length; i++){
+//         if(obj.(keys[i]) > 10) return true;
+//     }
+//     return false;
+// }
 
-        }
-    }
+// function return_higher_than_ten(array) {
+//     for(let i = 0; i < array.length; i++) {
+//         if(pass_test(array[i])){
+
+//         }
+//     }
+// }
+
+function filer_by_larger_than(array, val_to_filer) {
+    let filtered = arr.filter(x => x.sample_key > val_to_filter)
+    return filtered
 }
