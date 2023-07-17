@@ -3,7 +3,7 @@ class Task {
    
     constructor(task_in, completed_in = false) {
         this.description = task_in
-        this.completed = completed_in;
+        this.completed = completed_in
 
     }
 
@@ -89,8 +89,8 @@ class UI {
     }
 
     mark_completed(task) {
-        // e.preventDefault()
         task.completed = true;
+
         this.save_tasks_local()
     }
 
