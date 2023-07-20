@@ -54,7 +54,7 @@ function App() {
   }
 
   function onDeleteEntry(pokeName) {
-
+    alert("Not implemented yet!");
   }
 
   // function loadFromLocalStorage() {

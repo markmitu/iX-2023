@@ -1,6 +1,16 @@
 import React from 'react'
 
 export default function PokeTable(props) {
+
+    function postTypes(types) {
+        let str = "| ";
+        for(let i = 0; i < types.length; i++){
+            str += " " +types[i] + " |";
+        }
+        return str;
+    }
+
+
   return (
     <div>
         <table className='table'>
@@ -29,6 +39,7 @@ export default function PokeTable(props) {
                                 }
                                 </ul>
                            </div>
+                           {/* <div className='text-center container'>{postTypes(pokemon.natures)}</div> */}
                         </td>
                         <td>
                             <div onClick={() => props.onDeleteEntry(pokemon.id)}>
