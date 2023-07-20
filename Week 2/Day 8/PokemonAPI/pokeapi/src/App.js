@@ -75,7 +75,7 @@ function App() {
   return (
     <div className="App bg-dark pt-5">
       <div className="card p-4 mx-5">
-        <h1>PokeAPI Search</h1>
+        <h1>PokéAPI Search</h1>
         <hr/>
         <PokeInput
         onCreateEntry={onCreateEntry} 
