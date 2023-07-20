@@ -19,19 +19,12 @@ export default function RecipeInput(props) {
     function onFormSubmit(e) {
         e.preventDefault();
         
-        let recipe = new Recipe(name, parseIngredientsStr(ingStr), instructions);
+        let recipe = new Recipe(name, ingStr.split(","), instructions);
         console.log(name + " " + ingStr + " " + instructions);
         props.createRecipe(recipe);
         setName('');
         setIngStr('');
         setInstructions('');
-    }
-
-    function parseIngredientsStr(str) {
-        while(str.includes(",")){
-            str = str.replace(",", "");
-        }
-        return str.split(" ");
     }
 
   return (
