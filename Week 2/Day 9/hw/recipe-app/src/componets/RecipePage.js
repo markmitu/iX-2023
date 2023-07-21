@@ -1,16 +1,13 @@
-import './App.css';
+import React from 'react';
 
 import { useState, useEffect } from 'react';
 
-import RecipeInput from './componets/RecipeInput';
-import RecipeTable from './componets/RecipeTable';
-import RecipeService from './services/RecipeServices';
 
+import RecipeInput from './RecipeInput';
+import RecipeTable from './RecipeTable';
+import RecipeService from '../services/RecipeServices'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-function App() {
+export default function () {
   const [recipes, setRecipes] = useState([]);
   const [recipeToEdit, setRecipeToEdit] = useState(null);
 
@@ -54,7 +51,5 @@ function App() {
       onDeleteRecipe={onDeleteRecipe}
       />
     </div>
-  );
+  )
 }
-
-export default App;

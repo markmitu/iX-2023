@@ -28,7 +28,7 @@ export default function RecipeInput(props) {
     }
 
   return (
-    <div className='card mt-5 mb-2 mx-4 p-4'>
+    <div className='card mt-5 mb-2 mx-5 p-4'>
         <h1 className='text-center'>Recipe Book</h1>
         <h5 className='text-center'>Store All Your Recipes Here!</h5>
         <hr/>
