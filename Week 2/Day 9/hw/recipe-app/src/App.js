@@ -7,12 +7,14 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/Firebase';
 
 
-// import RecipeInput from './componets/RecipeInput';
-// import RecipeTable from './componets/RecipeTable';
 import RecipePage from './componets/RecipePage';
 import LoginPage from './componets/LoginPage';
 import RegisterPage from './componets/RegisterPage';
 import Navbar from './componets/Navbar';
+import RequireAuth from './componets/Day 11 componets/RequireAuth';
+import Spinner from './componets/Day 11 componets/Spinner';
+
+
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +24,14 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isUserUpdated, setIsUserUpdated] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setIsUserUpdated(true);
+    });
+  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,11 +42,29 @@ function App() {
   return (
   <BrowserRouter>
   <Navbar user={user} />
-  <Routes>
-    <Route path="/" element={<RecipePage />}></Route>
+  { isUserUpdated ? (
+    <Routes>
+    <Route
+      path="/"
+      element={
+        <RequireAuth user={user}>
+          <RecipePage user={user} />
+        </RequireAuth>
+      }
+    ></Route>
     <Route path="/login" element={<LoginPage />}></Route>
     <Route path="/register" element={<RegisterPage />}></Route>
   </Routes>
+  ) : (
+    <div className="mt-5 text-center">
+          <Spinner></Spinner>
+        </div>
+  ) }
+  {/* <Routes>
+    <Route path="/" element={<RecipePage />}></Route>
+    <Route path="/login" element={<LoginPage />}></Route>
+    <Route path="/register" element={<RegisterPage />}></Route>
+  </Routes> */}
   </BrowserRouter>
   );
 }

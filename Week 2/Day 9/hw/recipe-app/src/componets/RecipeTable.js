@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Spinner from './Day 11 componets/Spinner';
+
+
 export default function RecipeTable(props) {
 
     function createIngredientsList(ingredients) {
@@ -14,7 +17,9 @@ export default function RecipeTable(props) {
     
     return (
     <div>
-        {  
+    { props.loading ? (
+      <Spinner></Spinner>
+    ) : (  
         props.recipes.map((recipe) => {
             return (
             <div className='card my-3 mx-5 p-3'>
@@ -40,7 +45,8 @@ export default function RecipeTable(props) {
             </div>
             )
         })
-        }
+    ) }
     </div>
+
     )
 }

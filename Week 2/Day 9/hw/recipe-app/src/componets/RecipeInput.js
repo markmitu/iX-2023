@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import { Recipe } from "../models/Recipe";
+import Spinner from './Day 11 componets/Spinner';
+
 
 
 export default function RecipeInput(props) {
     const [name, setName] = useState('');
     const [ingStr, setIngStr] = useState('');
     const [instructions, setInstructions] = useState('');
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if(props.recipeToEdit) {
@@ -18,10 +22,16 @@ export default function RecipeInput(props) {
 
     function onFormSubmit(e) {
         e.preventDefault();
+
+        if(name === '' || ingStr === '' || instructions === '') return;
         
         let recipe = new Recipe(name, ingStr.split(","), instructions);
         console.log(name + " " + ingStr + " " + instructions);
+
+        setLoading(true);
         props.createRecipe(recipe);
+        setLoading(false);
+        
         setName('');
         setIngStr('');
         setInstructions('');
@@ -59,6 +69,7 @@ export default function RecipeInput(props) {
 
         <div class="d-grid gap-2">
             <button className='btn  btn-lg btn-outline-primary mt-4' type='submit'>
+            { loading ? <Spinner extraClass="change-size" /> : ''}
             { props.recipeToEdit ? 'Update' : "Submit"}
             </button>
         </div>

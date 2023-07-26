@@ -5,20 +5,29 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/Firebase';
 import { useNavigate } from 'react-router-dom';
 
+import Button from './Day 11 componets/Button';
+import Alert from './Day 11 componets/Alert';
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+
   async function onFormSubmit(e) {
     e.preventDefault();
 
+    setLoading(true);
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (err) {
       alert(err.message);
     }
+    setLoading(false);
   }
 
   return (
@@ -51,11 +60,19 @@ export default function LoginPage() {
           </div>
 
           <div className="d-flex justify-content-end mt-4">
-            <button className="btn btn-primary" type="submit">
+            <Button type="submit" className="px-5" loading={loading}>
               Login
-            </button>
+            </Button>
           </div>
         </form>
+        <Alert
+          variant="danger"
+          className="mt-5"
+          show={error}
+          onHide={() => setError('')}
+        >
+          {error}
+        </Alert>
       </div>
     </div>
   );
